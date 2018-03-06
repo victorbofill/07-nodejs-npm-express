@@ -83,7 +83,7 @@ articleView.initNewArticlePage = () => {
     this.select();
   });
 
-  $('#new-form').on('change', 'input, textarea', articleView.create);
+  $('#new-form').on('change', 'input, textarea', articleView.preview);
   $('#new-form').on('submit', articleView.submit);
 };
 
@@ -92,6 +92,7 @@ articleView.fetchAll = () => {
     articleView.loadArticles(JSON.parse(localStorage.rawData));
     articleView.setupView();
   } else {
+    // TODO update me to work with actual new server path
     $.getJSON('/data/hackerIpsum.json')
       .then(data => {
         // store the data for next time!
@@ -113,7 +114,7 @@ articleView.loadArticles = rawData => {
 
 // COMMENT: When is this function called? What event ultimately triggers its execution?
 // PUT YOUR RESPONSE HERE
-articleView.create = () => {
+articleView.preview = () => {
   let article;
   $('#articles').empty();
 
@@ -131,7 +132,7 @@ articleView.create = () => {
   $('pre code').each(function(i, block) {
     hljs.highlightBlock(block);
   });
-
+  // TODO: Do we need an export field?
   $('#export-field').show();
   $('#article-json').val(`${JSON.stringify(article)},`);
 };
@@ -140,29 +141,27 @@ articleView.create = () => {
 // PUT YOUR RESPONSE HERE
 articleView.submit = event => {
   event.preventDefault();
-  let article = new Article({
-    title: $('#article-title').val(),
-    author: $('#article-author').val(),
-    authorUrl: $('#article-author-url').val(),
-    category: $('#article-category').val(),
-    body: $('#article-body').val(),
-    publishedOn: $('#article-published:checked').length ? new Date() : null
-  });
-
-  // COMMENT: Where is this function defined? When is this function called? What event ultimately triggers its execution?
+  // TODO: Extract the getDataFrom form from the preview, so you can
+  // use it here to get the raw data!
+  const data = {}; // Call the raw data method
+  // COMMENT: Where is this function defined? When is this function called? 
+  // What event ultimately triggers its execution?
   // PUT YOUR RESPONSE HERE
-  article.insertRecord(article);
+  articleView.insertRecord(data);
 };
 
 
 // REVIEW: This new prototype method on the Article object constructor will allow us to create a new article from the new.html form page, and submit that data to the back-end. We will see this log out to the server in our terminal!
-articleView.insertRecord = article => { /* eslint-disable-line */ // TODO: remove me when article is used in method! 
+articleView.insertRecord = data => { /* eslint-disable-line */ // TODO: remove me when article is used in method! 
   // TODO: POST the article to the server
 
 
   // when the save is complete, console.log the returned data object
-  // STRETCH goal: create a new Article from the return data and load into the page
-  // (HINT: Extract the line of articleView.loadArticles you need into a function called from both places!)
+
+  // STRETCH: pick one that happens _after_ post is done:
+  // 1) clear the form, so user can input a new one
+  // 2) navigate to the index page
+  // (HINT: use: `window.location = <url>`)
 };
 
 articleView.setupView = () => {

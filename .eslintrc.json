@@ -23,7 +23,7 @@
     "no-console": "off",
     "no-undefined": "off",
     "new-cap": "warn",
-    "no-trailing-spaces": ["warn", { "skipBlankLines": true }],
+    "no-trailing-spaces": ["warn", { "skipBlankLines": true, "ignoreComments": true }],
     "quotes": ["warn", "single", {"allowTemplateLiterals": true}],
     "no-multi-spaces": ["warn", {"exceptions": {"VariableDeclarator": true}}],
     "no-template-curly-in-string": "error",
