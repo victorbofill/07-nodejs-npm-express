@@ -14,7 +14,7 @@ app.use(express.static('public'));
 // TODONE: server new.html under the alias GET /new
 // (HINT: use response.sendFile)
 app.get('/new', (request, response) => {
-  response.sendFile('/new.html');
+  response.sendFile(`${__dirname}/public/new.html`);
 });
 
 // TODONE: add a app.get for `/api/articles` that returns the
