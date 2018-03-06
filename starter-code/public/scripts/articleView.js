@@ -93,7 +93,7 @@ articleView.fetchAll = () => {
     articleView.setupView();
   } else {
     // TODO update me to work with actual new server path
-    $.getJSON('/data/hackerIpsum.json')
+    $.getJSON('/api/articles')
       .then(data => {
         // store the data for next time!
         localStorage.rawData = JSON.stringify(data);
@@ -106,7 +106,7 @@ articleView.fetchAll = () => {
 };
 
 articleView.loadArticles = rawData => {
-  const articles = Article.loadAll(rawData);
+  const articles = Article.load(rawData);
   articles.forEach(article =>{
     $('#articles').append(article.toHtml());
   });
