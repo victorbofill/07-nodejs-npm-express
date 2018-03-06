@@ -40,4 +40,4 @@ app.post('/api/articles', bodyParser, (request, response) => {
 
 app.listen(3000, () => {
   console.log('working');
-})
+});

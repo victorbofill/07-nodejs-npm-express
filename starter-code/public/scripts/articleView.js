@@ -89,10 +89,12 @@ articleView.initNewArticlePage = () => {
 
 articleView.fetchAll = () => {
   if (localStorage.rawData) {
-    articleView.loadArticles(JSON.parse(localStorage.rawData));
+    const test1 = localStorage.rawData;
+    const test2 = JSON.parse(test1);
+    articleView.loadArticles(test2);
     articleView.setupView();
   } else {
-    // TODO update me to work with actual new server path
+    // TODONE update me to work with actual new server path
     $.getJSON('/api/articles')
       .then(data => {
         // store the data for next time!
@@ -132,9 +134,9 @@ articleView.preview = () => {
   $('pre code').each(function(i, block) {
     hljs.highlightBlock(block);
   });
-  // TODO: Do we need an export field?
-  $('#export-field').show();
-  $('#article-json').val(`${JSON.stringify(article)},`);
+  // TODONE: Do we need an export field?
+  // $('#export-field').show();
+  // $('#article-json').val(`${JSON.stringify(article)},`);
 };
 
 // COMMENT: When is this function called? What event ultimately triggers its execution?
@@ -175,7 +177,7 @@ articleView.setupView = () => {
 
 articleView.initIndexPage = () => {
   // 1) initiate data loading
-  articleView.loadArticles();
+  articleView.fetchAll();
   // 2) do setup that doesn't require data being loaded
   articleView.handleMainNav();
 };
