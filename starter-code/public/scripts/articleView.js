@@ -175,7 +175,9 @@ articleView.submit = event => {
 articleView.insertRecord = data => { // TODONE: remove me when article is used in method! 
   // TODONE: POST the article to the server
   $.post('/api/articles', data)
-    .then(data => {console.log(data);});
+    .then(data => {console.log(data);
+      localStorage.clear();
+    });
   // when the save is complete, console.log the returned data object
 
   // STRETCH: pick one that happens _after_ post is done:
