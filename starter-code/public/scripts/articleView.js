@@ -139,25 +139,43 @@ articleView.preview = () => {
   // $('#article-json').val(`${JSON.stringify(article)},`);
 };
 
+articleView.rawData = () => {
+  return JSON.parse(localStorage.rawData);
+};
+
 // COMMENT: When is this function called? What event ultimately triggers its execution?
 // PUT YOUR RESPONSE HERE
 articleView.submit = event => {
   event.preventDefault();
-  // TODO: Extract the getDataFrom form from the preview, so you can
+  // TODONE: Extract the getDataFrom form from the preview, so you can
   // use it here to get the raw data!
-  const data = {}; // Call the raw data method
+  let article;
+  $('#articles').empty();
+
+  article = new Article({
+    title: $('#article-title').val(),
+    author: $('#article-author').val(),
+    authorUrl: $('#article-author-url').val(),
+    category: $('#article-category').val(),
+    body: $('#article-body').val(),
+    publishedOn: $('#article-published:checked').length ? new Date() : null
+  });
+
+  // Call the raw data method
+  
   // COMMENT: Where is this function defined? When is this function called? 
   // What event ultimately triggers its execution?
   // PUT YOUR RESPONSE HERE
-  articleView.insertRecord(data);
+
+  articleView.insertRecord(article);
 };
 
 
 // REVIEW: This new prototype method on the Article object constructor will allow us to create a new article from the new.html form page, and submit that data to the back-end. We will see this log out to the server in our terminal!
-articleView.insertRecord = data => { /* eslint-disable-line */ // TODO: remove me when article is used in method! 
-  // TODO: POST the article to the server
-
-
+articleView.insertRecord = data => { // TODONE: remove me when article is used in method! 
+  // TODONE: POST the article to the server
+  $.post('/api/articles', data)
+    .then(data => {console.log(data);});
   // when the save is complete, console.log the returned data object
 
   // STRETCH: pick one that happens _after_ post is done:

@@ -3,10 +3,14 @@
 const express = require('express');
 const fs = require('fs');
 
-const bodyParser = express.urlencoded({extended: true}); /* eslint-disable-line */ // TODO: remove me when PORT is used
-const PORT = process.env.PORT || 3000; /* eslint-disable-line */ // TODO: remove me when PORT is used
+const bodyParser = express.urlencoded({extended: true}); // TODONE: remove me when PORT is used
+const PORT = process.env.PORT || 3000; // TODONE: remove me when PORT is used
 
 const app = express();
+
+app.listen(3000, () => {
+  console.log('working');
+});
 
 // TODONE: use express.static to server the public path!
 app.use(express.static('public'));
@@ -36,8 +40,4 @@ app.post('/api/articles', bodyParser, (request, response) => {
   response.send(request.body);
 
   // STRETCH GOAL: read, change, and write the data file
-});
-
-app.listen(3000, () => {
-  console.log('working');
 });
