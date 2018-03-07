@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000; // TODONE: remove me when PORT is used
 
 const app = express();
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log('working');
 });
 
@@ -40,4 +40,11 @@ app.post('/api/articles', bodyParser, (request, response) => {
   response.send(request.body);
 
   // STRETCH GOAL: read, change, and write the data file
+});
+
+app.use((request, response) => {
+  response.statusCode = 404;
+  response.send(`
+    Invalid URL. Only localhost:3000 and localhost:3000/new are valid URLs.
+  `);
 });

@@ -75,7 +75,7 @@ articleView.setTeasers = () => {
 };
 
 // COMMENT: When/where is this function invoked? What event ultimately triggers its execution? Explain the sequence of code execution when this function is invoked.
-// PUT YOUR RESPONSE HERE
+// This is called at the end of the new.html HTML. It runs once the page is finished loading all assets.
 articleView.initNewArticlePage = () => {
   $('.tab-content').show();
   $('#export-field').hide();
@@ -115,7 +115,7 @@ articleView.loadArticles = rawData => {
 };
 
 // COMMENT: When is this function called? What event ultimately triggers its execution?
-// PUT YOUR RESPONSE HERE
+// This is called during the initNewArticlePage function, and completes running before said function continues.
 articleView.preview = () => {
   let article;
   $('#articles').empty();
@@ -144,7 +144,7 @@ articleView.rawData = () => {
 };
 
 // COMMENT: When is this function called? What event ultimately triggers its execution?
-// PUT YOUR RESPONSE HERE
+// This is triggered by the user clicking the "submit" button on the form.
 articleView.submit = event => {
   event.preventDefault();
   // TODONE: Extract the getDataFrom form from the preview, so you can
@@ -165,7 +165,7 @@ articleView.submit = event => {
   
   // COMMENT: Where is this function defined? When is this function called? 
   // What event ultimately triggers its execution?
-  // PUT YOUR RESPONSE HERE
+  // This function is defined directly below. It is called directly below, as part of the submit() function.
 
   articleView.insertRecord(article);
 };
